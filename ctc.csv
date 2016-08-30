@@ -1,0 +1,14 @@
+resource-name,base_salary_monthly,allowance_monthly,infra_monthly,misc,ctc_per_day,code,start,end,comment
+Sandesh Gandhi,60000,6000,1000,,2202.7397260274,INR,2015-07-01,2016-01-17,Non-billable in India
+Sandesh Gandhi,60000,40000,1000,,3320.5479452055,INR,2016-01-18,2016-01-31,Billable in SA on LiveEx
+Sandesh Gandhi,62000,40000,1000,,3386.301369863,INR,2016-02-01,2016-02-19,Annual increment
+Sandesh Gandhi,62000,6000,1000,,2268.4931506849,INR,2016-02-20,9999-12-31,billable in India
+Sandesh Gandhi,,,,20000,20000,INR,2016-02-24,2016-02-24,Java certification
+Sakina Marfatia,150840,,,,4959.1232876712,INR,2015-07-01,2016-01-31,billable in SA
+Sakina Marfatia,151700,,,,4987.397260274,INR,2016-02-01,9999-12-31,Annual increment in SA
+Varun Mali,80000,7000,1200,,2899.7260273973,INR,2015-08-01,2016-01-31,billable in India
+Varun Mali,88000,7000,1200,,3162.7397260274,INR,2016-02-01,9999-12-31,Annual increment
+Sushanta Sahoo,70000,6000,900,,2528.2191780822,INR,2015-07-01,2016-01-28,billable in India
+Sushanta Sahoo,70000,6000,1200,,2538.0821917808,INR,2016-01-29,9999-12-31,laptop assigned
+Chinmay Bedarkar,,,,30000,30000,INR,2016-03-27,2016-03-27,AIA Vitality BAU party
+Usha Venkatesan,,,,50000,50000,INR,2016-03-05,2016-03-05,Vitality party

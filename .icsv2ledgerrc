@@ -1,0 +1,17 @@
+[ZENCURR]
+account=Assets:Bank:Zensar Current Account
+currency=INR
+date=1
+csv_date_format=%Y-%m-%d
+ledger_date_format=%Y-%m-%d
+desc=2
+credit=5
+debit=6
+mapping_file=.icsv2ledgerrc-mapping
+template_file=.icsv2ledgerrc-template
+accounts_file=.icsv2ledgerrc-accounts
+encoding=utf-8
+
+[ZENCURR_addons]
+beneficiary=2
+purpose=3

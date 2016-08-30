@@ -1,0 +1,275 @@
+### Login to mysql
+
+mysql -u root --local-infile -p mydb;
+
+(password is:   sandesh )
+
+######  MySQL commands 
+
+drop database mydb;
+create database mydb;
+use mydb;
+
+##########################################################
+####################  Resource ###########################
+
+CREATE TABLE resource (
+res_id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+PRIMARY KEY ( res_id ),
+UNIQUE KEY resource_index (name)
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/resource.csv'
+INTO TABLE resource
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(name);
+
+####################  Project ############################
+
+CREATE TABLE project (
+prj_id INT NOT NULL AUTO_INCREMENT,
+prj_name VARCHAR(100) NOT NULL,
+prj_start DATE NOT NULL,
+prj_end DATE NOT NULL,
+PRIMARY KEY ( prj_id ),
+UNIQUE KEY prj_index (prj_name)
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/project.csv'
+INTO TABLE project
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(prj_name,@prj_start,@prj_end)
+SET prj_start = STR_TO_DATE(@prj_start, '%Y-%m-%d'), prj_end = STR_TO_DATE(@prj_end, '%Y-%m-%d');
+
+##########################################################
+####################  PRM  ###############################
+
+CREATE TABLE prm (
+    prm_id INT NOT NULL AUTO_INCREMENT, 
+    prj_ref_id INT NOT NULL,
+    res_ref_id INT NOT NULL,
+	prm_start DATE NOT NULL,
+	prm_end DATE NOT NULL,
+	PRIMARY KEY ( prm_id ),
+    FOREIGN KEY (prj_ref_id) REFERENCES project(prj_id) ON DELETE CASCADE,
+    FOREIGN KEY (res_ref_id) REFERENCES resource(res_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/prm.csv'
+INTO TABLE prm
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@prj_name,@res_name,@prm_start,@prm_end)
+SET prj_ref_id = (SELECT p.prj_id from project p WHERE p.prj_name=@prj_name), 
+	res_ref_id = (SELECT r.res_id from resource r WHERE r.name=@res_name),
+	prm_start = STR_TO_DATE(@prm_start, '%Y-%m-%d'),
+	prm_end = STR_TO_DATE(@prm_end, '%Y-%m-%d');
+
+##########################################################
+####################  CTC  ###############################
+
+CREATE TABLE ctc (
+    ctc_id INT NOT NULL AUTO_INCREMENT, 
+    res_ref_id INT NOT NULL,
+    base_salary_monthly DECIMAL(10,4) DEFAULT '0.0',
+    allowance_monthly DECIMAL(10,4) DEFAULT '0.0',
+    infra_monthly DECIMAL(10,4) DEFAULT '0.0',
+    misc DECIMAL(10,4) DEFAULT '0.0',
+    ctcpd DECIMAL(10,4) DEFAULT '0.0',
+    currency_code CHAR(3),
+	ctcpd_start DATE NOT NULL,
+	ctcpd_end DATE NOT NULL,
+	comment VARCHAR(100),
+	PRIMARY KEY ( ctc_id ),
+    FOREIGN KEY (res_ref_id) REFERENCES resource(res_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/ctc.csv'
+INTO TABLE ctc
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@res_name,base_salary_monthly,allowance_monthly,infra_monthly,misc,ctcpd,currency_code,@ctcpd_start,@ctcpd_end,comment)
+SET res_ref_id = (SELECT r.res_id from resource r WHERE r.name=@res_name), 
+    ctcpd_start = STR_TO_DATE(@ctcpd_start, '%Y-%m-%d'),
+    ctcpd_end = STR_TO_DATE(@ctcpd_end, '%Y-%m-%d');
+
+##########################################################
+#################### INCOME to Company per resource ######
+
+CREATE TABLE itc (
+    itc_id INT NOT NULL AUTO_INCREMENT, 
+    res_ref_id INT NOT NULL,
+    itcpd DECIMAL(10, 4) NOT NULL,
+    currency_code CHAR(3) NOT NULL,
+	itcpd_start DATE NOT NULL,
+	itcpd_end DATE NOT NULL,
+	PRIMARY KEY ( itc_id ),
+    FOREIGN KEY (res_ref_id) REFERENCES resource(res_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/itc.csv'
+INTO TABLE itc
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@res_ref_id,itcpd,currency_code,@itcpd_start,@itcpd_end)
+SET res_ref_id = (SELECT r.res_id from resource r WHERE r.name=@res_ref_id),
+    itcpd_start = STR_TO_DATE(@itcpd_start, '%Y-%m-%d'),
+    itcpd_end = STR_TO_DATE(@itcpd_end, '%Y-%m-%d');
+
+#################### Time sheet ###########################
+
+CREATE TABLE timesheet (
+ts_id  INT NOT NULL AUTO_INCREMENT,
+res_ref_id INT NOT NULL,
+res_ref_name VARCHAR(100),
+ts_date DATE NOT NULL,
+hours INT NOT NULL DEFAULT 0,
+comment VARCHAR(100) NULL,
+prj_ref_id INT NOT NULL,
+prj_ref_name VARCHAR(100) NOT NULL,
+PRIMARY KEY ( ts_id ),
+UNIQUE KEY unique_index (res_ref_id,ts_date),
+FOREIGN KEY (res_ref_id) REFERENCES resource(res_id) ON DELETE CASCADE,
+FOREIGN KEY (prj_ref_id) REFERENCES project(prj_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+LOAD DATA LOCAL INFILE '/home/sandesh/workspace/mis/timesheet.csv'
+INTO TABLE timesheet
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@resname,@ts_date,hours,comment)
+SET res_ref_name = (SELECT r.name from resource r WHERE r.name=@resname),
+    res_ref_id   = (SELECT r.res_id from resource r WHERE r.name=@resname),
+    ts_date = STR_TO_DATE(@ts_date, '%Y-%m-%d'),
+    prj_ref_id = (SELECT IFNULL((SELECT prjrm.prj_ref_id from prm prjrm WHERE (ts_date BETWEEN prjrm.prm_start AND prjrm.prm_end) AND prjrm.res_ref_id=timesheet.res_ref_id),1)),
+    prj_ref_name = (SELECT p.prj_name from project p WHERE p.prj_id=prj_ref_id);
+    
+##########################################################
+########################### Create the Company Account table ####################
+
+CREATE TABLE account (
+    id INT NOT NULL AUTO_INCREMENT,
+    date DATE, 
+    payee VARCHAR(100),
+    description VARCHAR(255),
+    currency_code CHAR(3),
+    credit DECIMAL(10, 4) DEFAULT '0.00' NOT NULL,
+    debit DECIMAL(10, 4) DEFAULT '0.00' NOT NULL,
+    PRIMARY KEY ( id )
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+
+########################### Create the journal entries from procedure ####################
+
+# change the delimiter to $$, so you can use semicolon in create procedure
+DELIMITER $$
+
+USE mydb$$
+
+DROP PROCEDURE IF EXISTS sp_insert_account$$
+
+CREATE PROCEDURE sp_insert_account()
+BEGIN
+    DECLARE resource_id,hours,project_id, rows INT;
+    DECLARE projectname,resourcename, tscomment, prj_ref_name,ctc_comment VARCHAR(100);
+    DECLARE itcpd_amount,ctcpd_amount DECIMAL(10,4);
+    DECLARE ctcpd_start, ctcpd_end, timesheetdate DATE;
+    DECLARE itc_curr_code, ctc_curr_code CHAR(3);
+
+    DECLARE proj_done, attribute_done BOOLEAN DEFAULT FALSE; 
+    DECLARE curProjects CURSOR FOR SELECT t.res_ref_id, t.res_ref_name, t.ts_date, t.hours, t.comment, t.prj_ref_id, t.prj_ref_name FROM timesheet t;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET proj_done = TRUE;
+    
+    OPEN curProjects;
+    cur_project_loop: LOOP
+        FETCH curProjects INTO resource_id,resourcename,timesheetdate,hours,tscomment,project_id,projectname;
+        IF proj_done THEN
+        CLOSE curProjects;
+        LEAVE cur_project_loop;
+        END IF;
+
+        SET itcpd_amount = 0.00;
+        IF hours >0 THEN
+            SELECT i.itcpd,i.currency_code INTO itcpd_amount,itc_curr_code FROM itc i WHERE i.res_ref_id=resource_id AND (timesheetdate>=i.itcpd_start AND timesheetdate<=i.itcpd_end);
+            INSERT INTO account (date,payee,description,currency_code,credit,debit) 
+            VALUES(timesheetdate,CONCAT('CR:',projectname,':',resourcename),tscomment,itc_curr_code,itcpd_amount,0);       
+        END IF;
+
+        BLOCK2: BEGIN
+        DECLARE curAttribute CURSOR FOR SELECT c.ctcpd, c.currency_code, c.comment FROM ctc c WHERE c.res_ref_id=resource_id AND (timesheetdate>=c.ctcpd_start AND timesheetdate<=c.ctcpd_end);
+        DECLARE CONTINUE HANDLER FOR NOT FOUND SET attribute_done = TRUE;
+        OPEN curAttribute;
+        cur_attribute_loop: LOOP
+        FETCH curAttribute INTO ctcpd_amount, ctc_curr_code, ctc_comment;
+        IF attribute_done or proj_done THEN
+            SET proj_done = FALSE;
+            SET attribute_done = FALSE;
+            CLOSE curAttribute;
+            LEAVE cur_attribute_loop;
+        END IF; 
+
+        INSERT INTO account (date,payee,description,currency_code,credit,debit)
+                  VALUES(timesheetdate,CONCAT('DR:',projectname,':',resourcename),ctc_comment,ctc_curr_code,0,ctcpd_amount);
+
+        END LOOP cur_attribute_loop;
+        END BLOCK2;
+    END LOOP cur_project_loop;
+
+END$$
+# change the delimiter back to semicolon
+DELIMITER ;
+
+
+
+
+
+########################### Call credits procedure ####################
+CALL sp_insert_account();
+
+
+
+
+
+
+
+
+########################### remove existing files ####################
+
+### run this in terminal
+
+sudo rm -rf /tmp/zencurr.csv
+cd ~/workspace/mis
+rm -rf ./zencurr.csv ./zencurr.ledger
+
+########################### Export the  journal entries ####################
+
+
+#### Run this in mysql
+
+SELECT "date", "payee", "desc", "code", "credit", "debit" FROM account
+UNION
+SELECT date,payee,description,currency_code,credit,debit
+FROM account INTO OUTFILE '/tmp/zencurr.csv' 
+FIELDS ENCLOSED BY '"' ESCAPED BY '"' TERMINATED BY ',' 
+LINES TERMINATED BY '\r\n';
+
+
+###########################  icsv2ledger #########################################
+### run this in terminal
+
+
+#!/bin/bash
+cd ~/workspace/mis
+cp /tmp/zencurr.csv ./zencurr.csv 
+python3 icsv2ledger.py --quiet --account ZENCURR zencurr.csv zencurr.ledger
+
+hledger-web -f ./zencurr.ledger

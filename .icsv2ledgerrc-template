@@ -1,0 +1,8 @@
+{date} {cleared_character} {payee}
+    ; MD5Sum: {md5sum}
+    ; CSV: {csv}
+    ; Tags:  {tags}
+    ; Purpose: {addon_purpose}
+ 	; Beneficiary: {addon_beneficiary}
+    {debit_account:<60}    {debit_currency} {debit}
+    {credit_account:<60}    {credit_currency} {credit}

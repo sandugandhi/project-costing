@@ -1,0 +1,55 @@
+CR:AIA Vitality BAU:Sandesh Gandhi,Assets:AIA Vitality BAU:Sandesh Gandhi,Income:AIA Vitality BAU:Sandesh Gandhi
+CR:AIA Vitality BAU:Varun Mali,Assets:AIA Vitality BAU:Varun Mali,Income:AIA Vitality BAU:Varun Mali
+CR:AIA Vitality BAU:Sakina Marfatia,Assets:AIA Vitality BAU:Sakina Marfatia,Income:AIA Vitality BAU:Sakina Marfatia
+CR:AIA Vitality International:Sakina Marfatia,Assets:AIA Vitality International:Sakina Marfatia,Income:AIA Vitality International:Sakina Marfatia
+CR:AIA Vitality International:Sushanta Sahoo,Assets:AIA Vitality International:Sushanta Sahoo,Income:AIA Vitality International:Sushanta Sahoo
+CR:AIA Ops:Sakina Marfatia,Assets:AIA Ops:Sakina Marfatia,Income:AIA Ops:Sakina Marfatia
+CR:AIA Ops:Sushanta Sahoo,Assets:AIA Ops:Sushanta Sahoo,Income:AIA Ops:Sushanta Sahoo
+CR:Generali Ops:Sushanta Sahoo,Assets:Generali Ops:Sushanta Sahoo,Income:Generali Ops:Sushanta Sahoo
+CR:AIA Vitality Core:Varun Mali,Assets:AIA Vitality Core:Varun Mali,Income:AIA Vitality Core:Varun Mali
+CR:Discovery Insure:Sakina Marfatia,Assets:Discovery Insure:Sakina Marfatia,Income:Discovery Insure:Sakina Marfatia
+
+DR:Discovery-Vitality ODC:Sandesh Gandhi,Assets:Discovery-Vitality ODC:Sandesh Gandhi,Expenses:Salary:Discovery-Vitality ODC:Sandesh Gandhi
+DR:Discovery-Vitality ODC:Varun Mali,Assets:Discovery-Vitality ODC:Varun Mali,Expenses:Salary:Discovery-Vitality ODC:Varun Mali
+DR:Discovery-Vitality ODC:Sakina Marfatia,Assets:Discovery-Vitality ODC:Sakina Marfatia,Expenses:Salary:Discovery-Vitality ODC:Sakina Marfatia
+DR:Discovery-Vitality ODC:Sushanta Sahoo,Assets:Discovery-Vitality ODC:Sushanta Sahoo,Expenses:Salary:Discovery-Vitality ODC:Sushanta Sahoo
+DR:Discovery-Vitality ODC:Chinmay Bedarkar,Assets:Discovery-Vitality ODC:Chinmay Bedarkar,Expenses:Entertainment:Discovery-Vitality ODC:Chinmay Bedarkar
+DR:Discovery-Vitality ODC:Usha Venkatesan,Assets:Discovery-Vitality ODC:Usha Venkatesan,Expenses:Entertainment:Discovery-Vitality ODC:Usha Venkatesan
+
+
+DR:AIA Vitality International:Sandesh Gandhi,Assets:AIA Vitality International:Sandesh Gandhi,Expenses:Salary:AIA Vitality International:Sandesh Gandhi
+DR:AIA Vitality International:Varun Mali,Assets:AIA Vitality International:Varun Mali,Expenses:Salary:AIA Vitality International:Varun Mali
+DR:AIA Vitality International:Sakina Marfatia,Assets:AIA Vitality International:Sakina Marfatia,Expenses:Salary:AIA Vitality International:Sakina Marfatia
+DR:AIA Vitality International:Sushanta Sahoo,Assets:AIA Vitality International:Sushanta Sahoo,Expenses:Salary:AIA Vitality International:Sushanta Sahoo
+
+DR:AIA Vitality International:Sandesh Gandhi,Assets:AIA Vitality International:Sandesh Gandhi,Expenses:Salary:AIA Vitality International:Sandesh Gandhi
+DR:AIA Vitality International:Varun Mali,Assets:AIA Vitality International:Varun Mali,Expenses:Salary:AIA Vitality International:Varun Mali
+DR:AIA Vitality International:Sakina Marfatia,Assets:AIA Vitality International:Sakina Marfatia,Expenses:Salary:AIA Vitality International:Sakina Marfatia
+DR:AIA Vitality International:Sushanta Sahoo,Assets:AIA Vitality International:Sushanta Sahoo,Expenses:Salary:AIA Vitality International:Sushanta Sahoo
+
+
+DR:AIA Ops:Sandesh Gandhi,Assets:AIA Ops:Sandesh Gandhi,Expenses:Salary:AIA Ops:Sandesh Gandhi
+DR:AIA Ops:Varun Mali,Assets:AIA Ops:Varun Mali,Expenses:Salary:AIA Ops:Varun Mali
+DR:AIA Ops:Sakina Marfatia,Assets:AIA Ops:Sakina Marfatia,Expenses:Salary:AIA Ops:Sakina Marfatia
+DR:AIA Ops:Sushanta Sahoo,Assets:AIA Ops:Sushanta Sahoo,Expenses:Salary:AIA Ops:Sushanta Sahoo
+
+DR:Generali Ops:Sandesh Gandhi,Assets:Generali Ops:Sandesh Gandhi,Expenses:Salary:Generali Ops:Sandesh Gandhi
+DR:Generali Ops:Varun Mali,Assets:Generali Ops:Varun Mali,Expenses:Salary:Generali Ops:Varun Mali
+DR:Generali Ops:Sakina Marfatia,Assets:Generali Ops:Sakina Marfatia,Expenses:Salary:Generali Ops:Sakina Marfatia
+DR:Generali Ops:Sushanta Sahoo,Assets:Generali Ops:Sushanta Sahoo,Expenses:Salary:Generali Ops:Sushanta Sahoo
+
+DR:AIA Vitality Core:Sandesh Gandhi,Assets:AIA Vitality Core:Sandesh Gandhi,Expenses:Salary:AIA Vitality Core:Sandesh Gandhi
+DR:AIA Vitality Core:Varun Mali,Assets:AIA Vitality Core:Varun Mali,Expenses:Salary:AIA Vitality Core:Varun Mali
+DR:AIA Vitality Core:Sakina Marfatia,Assets:AIA Vitality Core:Sakina Marfatia,Expenses:Salary:AIA Vitality Core:Sakina Marfatia
+DR:AIA Vitality Core:Sushanta Sahoo,Assets:AIA Vitality Core:Sushanta Sahoo,Expenses:Salary:AIA Vitality Core:Sushanta Sahoo
+
+
+DR:Discovery Insure:Sandesh Gandhi,Assets:Discovery Insure:Sandesh Gandhi,Expenses:Salary:Discovery Insure:Sandesh Gandhi
+DR:Discovery Insure:Varun Mali,Assets:Discovery Insure:Varun Mali,Expenses:Salary:Discovery Insure:Varun Mali
+DR:Discovery Insure:Sakina Marfatia,Assets:Discovery Insure:Sakina Marfatia,Expenses:Salary:Discovery Insure:Sakina Marfatia
+DR:Discovery Insure:Sushanta Sahoo,Assets:Discovery Insure:Sushanta Sahoo,Expenses:Salary:Discovery Insure:Sushanta Sahoo
+
+DR:AIA Vitality BAU:Sandesh Gandhi,Assets:AIA Vitality BAU:Sandesh Gandhi,Expenses:Salary:AIA Vitality BAU:Sandesh Gandhi
+DR:AIA Vitality BAU:Varun Mali,Assets:AIA Vitality BAU:Varun Mali,Expenses:Salary:AIA Vitality BAU:Varun Mali
+DR:AIA Vitality BAU:Sakina Marfatia,Assets:AIA Vitality BAU:Sakina Marfatia,Expenses:Salary:AIA Vitality BAU:Sakina Marfatia
+DR:AIA Vitality BAU:Sushanta Sahoo,Assets:AIA Vitality BAU:Sushanta Sahoo,Expenses:Salary:AIA Vitality BAU:Sushanta Sahoo

@@ -1,0 +1,31 @@
+account Assets:Bank:Zensar Savings Account
+account Expenses:Salary:Sandesh Gandhi
+account Expenses:Misc:Sandesh Gandhi
+account Expenses:Infra:Sandesh Gandhi
+account Expenses:Salary:Sakina Marfatia
+account Expenses:Misc:Sakina Marfatia
+account Expenses:Infra:Sakina Marfatia
+account Expenses:Salary:Sushanta Sahoo
+account Expenses:Misc:Sushanta Sahoo
+account Expenses:Infra:Sushanta Sahoo
+account Expenses:Salary:Varun Mali
+account Expenses:Misc:Varun Mali
+account Expenses:Infra:Varun Mali
+account Assets:AIA Vitality BAU:Sandesh Gandhi
+account Income:AIA Vitality BAU:Sandesh Gandhi
+account Assets:AIA Vitality BAU:Varun Mali
+account Income:AIA Vitality BAU:Varun Mali
+account Assets:AIA Vitality BAU:Sakina Marfatia
+account Income:AIA Vitality BAU:Sakina Marfatia
+account Assets:AIA Vitality International:Sakina Marfatia
+account Income:AIA Vitality International:Sakina Marfatia
+account Assets:AIA Vitality International:Sushanta Sahoo
+account Income:AIA Vitality International:Sushanta Sahoo
+account Assets:AIA Ops:Sakina Marfatia
+account Income:AIA Ops:Sakina Marfatia
+account Assets:AIA Ops:Sushanta Sahoo
+account Income:AIA Ops:Sushanta Sahoo
+account Assets:Generali Ops:Sushanta Sahoo
+account Income:Generali Ops:Sushanta Sahoo
+account Assets:AIA Vitality Core:Varun Mali
+account Income:AIA Vitality Core:Varun Mali
